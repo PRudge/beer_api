@@ -1,10 +1,11 @@
 body{
   font-family: 'Julius Sans One', sans-serif;
 }
-h3{
+h2{
   text-align: center;
   padding: 5px;
   margin: 0;
+  font-size: 20px;
   /* overflow: hidden; */
 }
 
@@ -16,7 +17,7 @@ img{
 
 #beer-container{
  display: grid;
- grid-template-columns: repeat(6, 1fr);
+ grid-template-columns: repeat(4, 1fr);
 }
 
 
@@ -24,13 +25,11 @@ img{
  grid-column: auto;
 
  border: 1px solid lightgray;
- box-shadow: 0 0px 10px rgba(0,0,0,0.2);
+ box-shadow: 0 0px 5px rgba(0,0,0,0.2);
  margin:  10px;
  padding: 0;
- width: 200px;
  height: auto; /* makes sure all the image is displayed */
  border-radius: 10px;
- overflow: hidden;
 }
 
 .beer-item:hover{
