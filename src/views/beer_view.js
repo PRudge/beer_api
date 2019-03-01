@@ -29,7 +29,6 @@ BeerView.prototype.displayBeers = function(beers){
     beerBox.appendChild(option);
 
     const image = document.createElement('img');
-    image.classList.add('imgclass')
     image.src = beer.image_url;
     beerBox.appendChild(image);
 
