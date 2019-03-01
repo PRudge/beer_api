@@ -16,8 +16,6 @@ BeerView.prototype.bindEvents = function () {
 }; // bindEvents
 
 BeerView.prototype.displayBeers = function(beers){
-  console.log(beers);
-
 
   beers.forEach((beer) => {
     const beerBox = document.createElement('div');

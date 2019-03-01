@@ -29,7 +29,7 @@ img{
  margin:  10px;
  padding: 0;
  height: auto; /* makes sure all the image is displayed */
- border-radius: 10px;
+ border-radius: 5px;
 }
 
 .beer-item:hover{
@@ -39,10 +39,10 @@ img{
 
 .beer-title{
   background: lightgray;
-  height: auto; /* makes sure all the title is displaye */
-  width: 200x;
+  height: auto; /* makes sure all the title is displayed */
 }
 
 .beer-title:hover{
-  background: white; /* just because! */
+  background: black; /* just because! */
+  color: white;
 }
