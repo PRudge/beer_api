@@ -23,7 +23,7 @@ BeerView.prototype.displayBeers = function(beers){
     const beerBox = document.createElement('div');
     beerBox.classList.add('beer-item')
     const option = document.createElement('h3');
-    option.classList.add('head');
+    option.classList.add('beer-title');
     option.textContent = beer.name;
 
     beerBox.appendChild(option);

@@ -27,32 +27,13 @@ li {
  overflow: hidden
 }
 
-/* img{
-  width: 50px;
-} */
-
-
-
-
-
-
-li:hover{
-  box-shadow: none;
-  transition: 0.08s;
-}
-
-ul{
-  padding: 0;
-  margin: 0;
-}
-
-.head{
+.beer-title{
   background: lightgray;
   height: 50px;
   width: 200x;
 }
 
-.head:hover{
+.beer-title:hover{
   background: white;
   transition: 0.1s
 }
