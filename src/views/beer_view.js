@@ -20,12 +20,15 @@ BeerView.prototype.displayBeers = function(beers){
 
 
   beers.forEach((beer) => {
-    console.log(beer);
     const option = document.createElement('h3');
     option.textContent = beer.name;
-    console.log(`hi ${option}`);
 
     this.element.appendChild(option);
+
+    const image = document.createElement('img');
+    image.src = beer.image_url;
+    this.element.appendChild(image);
+
   });
 
 
