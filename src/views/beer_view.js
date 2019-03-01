@@ -20,14 +20,18 @@ BeerView.prototype.displayBeers = function(beers){
 
 
   beers.forEach((beer) => {
+    const beerBox = document.createElement('div');
+    beerBox.classList.add('beer-item')
     const option = document.createElement('h3');
     option.textContent = beer.name;
 
-    this.element.appendChild(option);
+    beerBox.appendChild(option);
 
     const image = document.createElement('img');
     image.src = beer.image_url;
-    this.element.appendChild(image);
+    beerBox.appendChild(image);
+
+    this.element.appendChild(beerBox);
 
   });
 
