@@ -1,8 +1,9 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub');
 
-const BeerView = function(container) {
-  this.container = container;
+const BeerView = function(element) {
+  this.element = element;
+  console.log(`elemente${element}`)
 };
 
 BeerView.prototype.bindEvents = function () {
@@ -16,9 +17,17 @@ BeerView.prototype.bindEvents = function () {
 
 BeerView.prototype.displayBeers = function(beers){
   console.log(beers);
-  const option = document.createElement('h3');
-  option.textContent = "hello";
-  this.container.appendChild(option)
+
+
+  beers.forEach((beer) => {
+    console.log(beer);
+    const option = document.createElement('h3');
+    option.textContent = beer.name;
+    console.log(`hi ${option}`);
+
+    this.element.appendChild(option);
+  });
+
 
 }
 
