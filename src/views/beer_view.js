@@ -9,14 +9,14 @@ BeerView.prototype.bindEvents = function () {
   PubSub.subscribe('BeerData:beer data loaded', (evt) => {
 
     const beers = evt.detail;
+
     this.displayBeers(beers)
 
   }); // subscribe
-  
+
   const searchElement = document.getElementById("search");
   searchElement.addEventListener("search", function(e) {
       const foodSearch = searchElement.value;
-      console.log(foodSearch);
       PubSub.publish('BeerView:paired food search entered', foodSearch);
 
   }, false);
@@ -26,7 +26,7 @@ BeerView.prototype.bindEvents = function () {
 }; // bindEvents
 
 BeerView.prototype.displayBeers = function(beers){
-
+  this.container.innerHTML = '';
   beers.forEach((beer) => {
     const beerBox = document.createElement('div');
     beerBox.classList.add('beer-item')
