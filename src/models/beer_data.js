@@ -8,7 +8,14 @@ const BeerData = function (){
 
 BeerData.prototype.bindEvents = function() {
 
-}
+  PubSub.subscribe('BeerView:paired food search entered', (evt)  => {
+
+    const foodIndex = evt.detail;
+
+    this.getPairedBeers(foodIndex);
+  })
+};
+
 
 BeerData.prototype.getData = function () {
   const request = new RequestHelper ('https://api.punkapi.com/v2/beers');
@@ -18,5 +25,11 @@ BeerData.prototype.getData = function () {
   });
 
 };
+
+
+BeerData.prototype.getPairedBeers = function (foodIndex) {
+  console.log('in getPairedBeers');
+  console.log(foodIndex);
+}
 
 module.exports = BeerData;

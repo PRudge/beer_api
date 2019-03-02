@@ -1,9 +1,8 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub');
 
-const BeerView = function(element) {
-  this.element = element;
-  console.log(`elemente${element}`)
+const BeerView = function(container) {
+  this.container = container;
 };
 
 BeerView.prototype.bindEvents = function () {
@@ -13,6 +12,17 @@ BeerView.prototype.bindEvents = function () {
     this.displayBeers(beers)
 
   }); // subscribe
+  
+  const searchElement = document.getElementById("search");
+  searchElement.addEventListener("search", function(e) {
+      const foodSearch = searchElement.value;
+      console.log(foodSearch);
+      PubSub.publish('BeerView:paired food search entered', foodSearch);
+
+  }, false);
+
+
+
 }; // bindEvents
 
 BeerView.prototype.displayBeers = function(beers){
@@ -31,7 +41,7 @@ BeerView.prototype.displayBeers = function(beers){
     image.src = beer.image_url;
     beerBox.appendChild(image);
 
-    this.element.appendChild(beerBox);
+    this.container.appendChild(beerBox);
 
   });
 
