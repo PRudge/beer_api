@@ -21,12 +21,13 @@ BeerView.prototype.displayBeers = function(beers){
     const beerBox = document.createElement('div');
     beerBox.classList.add('beer-item')
     const option = document.createElement('p');
-    // option.classList.add('beer-title');
+    option.classList.add('beer-title');
     option.textContent = beer.name;
 
     beerBox.appendChild(option);
 
     const image = document.createElement('img');
+    image.classList.add('image-style');
     image.src = beer.image_url;
     beerBox.appendChild(image);
 
