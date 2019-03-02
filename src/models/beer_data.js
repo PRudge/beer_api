@@ -4,19 +4,17 @@ const PubSub = require('../helpers/pub_sub.js');
 const BeerData = function (){
   this.data = [];
   this.pairedBeers = [];
-
 }
 
 BeerData.prototype.bindEvents = function() {
-
   PubSub.subscribe('BeerView:paired food search entered', (evt)  => {
 
-    const foodIndex = evt.detail;
-    if (foodIndex === ""){
+    const foodToSearch = evt.detail;
+    if (foodToSearch === ""){ // no input so display all the beers
       PubSub.publish('BeerData:beer data loaded', this.data);
     }
 
-    this.getPairedBeers(foodIndex);
+    this.getPairedBeers(foodToSearch);
   })
 };
 
@@ -32,29 +30,51 @@ BeerData.prototype.getData = function () {
 };
 
 
-BeerData.prototype.getPairedBeers = function (foodIndex) {
-  this.pairedBeers = [];
+BeerData.prototype.getPairedBeers = function (foodToSearch) {
+  this.pairedBeers = []; // clear this down so that it is ready for next search
   this.data.forEach(beerDets =>{
     beerDets.food_pairing.forEach(beerFoodPair => {
-
-      if (beerFoodPair.match(foodIndex)) {
+      if (beerFoodPair.match(foodToSearch)) {
         this.pairedBeers.push(beerDets)
-
       }
-    }) // for each food_pairing element for a beer
-  }) // for each beerDet
+    });
+  });
+
+  const uniqueBeerDetails = this.getUniqueBeerDets();
 
 
-  const unique = this.pairedBeers
-  .map(e => e.id)
-
-  // store the keys of the unique objects
-  .map((e, i, final) => final.indexOf(e) === i && i)
-
-  // eliminate the dead keys & store unique objects
-  .filter(e => this.pairedBeers[e]).map(e => this.pairedBeers[e]);
-
-  PubSub.publish('BeerData:beer data loaded', unique);
+  PubSub.publish('BeerData:beer data loaded', uniqueBeerDetails);
 } // getPairedBeers
+
+
+BeerData.prototype.getUniqueBeerDets = function () {
+  const mapBeerIds = this.getMapOfBeerIds();
+  const areIdsUnique = this.checkIfIdsUnique(mapBeerIds);
+  const uniqueKeys = this.createUniqueArr(areIdsUnique);
+  const uniqueBeerArr = this.storeUniqueBeers(uniqueKeys)
+
+  return uniqueBeerArr;
+}
+
+BeerData.prototype.getMapOfBeerIds = function () {
+  const mapBeerIds = this.pairedBeers.map(beerElement => beerElement.id);
+  return mapBeerIds
+}
+
+BeerData.prototype.checkIfIdsUnique = function (mapBeerIds) {
+  const areKeysUnique = mapBeerIds.map((beerElement, index, array) => array.indexOf(beerElement) === index && index);
+  return areKeysUnique;
+}
+
+BeerData.prototype.createUniqueArr = function (areKeysUnique) {
+  const uniqueKeys = areKeysUnique.filter(beerElement => this.pairedBeers[beerElement])
+  return uniqueKeys;
+}
+
+BeerData.prototype.storeUniqueBeers = function (uniqueKeys) {
+  const uniqueBeerArr = uniqueKeys.map(beerElement => this.pairedBeers[beerElement]);
+  return uniqueBeerArr;
+}
+
 
 module.exports = BeerData;

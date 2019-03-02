@@ -1,6 +1,6 @@
 body{
   font-family: 'Julius Sans One', sans-serif;
-  background-color: rgb(250, 250, 250);
+  background-color: #fafafa;
   color: #181818;
 }
 
@@ -11,8 +11,9 @@ body{
 
 .beer-item{
  grid-column: auto;
+ border-radius: 8px;
  background-color: white;
- border-radius: 5px;
+
  box-shadow: 2px 2px 6px 0 rgba(123, 123, 123, 0.2);
  margin:  10px;
  padding: 0;
@@ -20,12 +21,15 @@ body{
 }
 
 .beer-item:hover{
-  background-color: #dcdcdc;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+
 }
 
 .beer-title{
   border-bottom: 1px solid #bfbfbf;
-  border-radius: 5px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
   text-align: center;
   padding: 5px;
   margin: 0;
@@ -36,6 +40,7 @@ body{
 
 .beer-title:hover{
   background-color: #000;
+
   color: #fff;
 }
 
@@ -52,4 +57,45 @@ body{
   margin: 20px auto; /* puts image in middle horizontally */
   display: block;
   max-height: 100px; */
+}
+
+
+/* pop up info beerBox
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
