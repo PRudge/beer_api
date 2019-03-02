@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const beerContainer = document.querySelector("div#beer-container");
-
     const beerView = new BeerView(beerContainer);
     console.log(beerContainer);
     beerView.bindEvents();

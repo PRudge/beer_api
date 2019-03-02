@@ -20,8 +20,8 @@ BeerView.prototype.displayBeers = function(beers){
   beers.forEach((beer) => {
     const beerBox = document.createElement('div');
     beerBox.classList.add('beer-item')
-    const option = document.createElement('h2');
-    option.classList.add('beer-title');
+    const option = document.createElement('p');
+    // option.classList.add('beer-title');
     option.textContent = beer.name;
 
     beerBox.appendChild(option);

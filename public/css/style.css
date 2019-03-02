@@ -1,45 +1,71 @@
 body{
+  /* font-family: 'Gill Sans Light', Verdana, Helvetica, sans-serif; */
   font-family: 'Julius Sans One', sans-serif;
+  background-color: rgb(250, 250, 250);
 }
+
+h1{text-align: center;
+padding: 5px;
+margin: 0;
+color: #8c8d8e;
+border-bottom: 1px solid #bfbfbf;
+}
+
 h2{
-  text-align: center;
+  /* text-align: center;
   padding: 5px;
   margin: 0;
-  font-size: 20px;
+  color: #8c8d8e;
+  border-bottom: 1px solid #bfbfbf; */
   /* overflow: hidden; */
 }
 
 img{
   margin: 20px auto; /* puts image in middle horizontally */
   display: block;
-  max-height: 90px;
+  max-height: 100px; */
+}
+
+p {
+    border-bottom: 1px solid #bfbfbf;
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+  font-size: 20px;
+  background: lightgray;
+  height: 50px;
+}
+
+p:hover{
+  background: black; /* just because! */
+  color: white;
+  border-radius: 5px;
 }
 
 #beer-container{
  display: grid;
- grid-template-columns: repeat(4, 1fr);
+ grid-template-columns: repeat(5, 1fr);
 }
 
 
 .beer-item{
  grid-column: auto;
 
- border: 1px solid lightgray;
- box-shadow: 0 0px 5px rgba(0,0,0,0.2);
+ background-color: white;
+ border-radius: 5px;
+ box-shadow: 2px 2px 6px 0 rgba(123, 123, 123, 0.2);
  margin:  10px;
  padding: 0;
  height: auto; /* makes sure all the image is displayed */
- border-radius: 5px;
 }
 
 .beer-item:hover{
   background: lightgray; /* just because */
-
 }
 
 .beer-title{
   background: lightgray;
-  height: auto; /* makes sure all the title is displayed */
+  height: 50px; /* makes sure all the title is displayed */
 }
 
 .beer-title:hover{
