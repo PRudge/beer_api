@@ -12,16 +12,35 @@ BeerData.prototype.bindEvents = function() {
     const foodToSearch = evt.detail;
     if (foodToSearch === ""){ // no input so display all the beers
       PubSub.publish('BeerData:beer data loaded', this.data);
+      this.publishBeers(data);
     }
 
     this.getPairedBeers(foodToSearch);
-  })
+  });
 
-  // PubSub.subscribe('PopUpView:information pop up requested', (evt)  => {
-  //   console.log(evt.detail);
-  // })
+  PubSub.subscribe('BeerView:change', (evt)  => {
+    console.log('here I am');
+    const beerIndex = evt.detail;
+    this.publishBeersByOneBeer(beerIndex);
+  })
 };
 
+  // PubSub.subscribe('BeerView:information pop up requested', (evt)  => {
+  //   console.log(`hello`, evt.detail);
+  // })
+
+
+
+BeerData.prototype.publishBeersByOneBeer = function (){
+  console.log('I am here')
+}
+
+BeerData.prototype.publishBeers = function(beers){
+  this.beersArr = data;
+  this.beers = this.getUniqueBeerDets();
+
+  PubSub.publish('BeerData:beers ready', this.beers);
+}
 
 BeerData.prototype.getData = function () {
   const request = new RequestHelper ('https://api.punkapi.com/v2/beers');

@@ -4,12 +4,21 @@ const PubSub = require('../helpers/pub_sub');
 const BeerView = function(container) {
   this.container = container;
   this.foodSearch = "";
+  this.selectBeer = "";
 };
 
 BeerView.prototype.bindEvents = function () {
   PubSub.subscribe('BeerData:beer data loaded', (evt) => {
     const beers = evt.detail;
-    this.displayBeers(beers)
+    console.log(beers);
+    this.displayBeers(beers);
+    this.populateSelect(beers);
+  });
+
+  PubSub.subscribe('BeerData:beers ready' , (evt) => {
+    const beers = evt.detail;
+    console.log(beers);
+    this.populateSelect(beers);
   }); // subscribe
 
   // const searchElement = document.querySelector("search-field");
@@ -23,29 +32,93 @@ BeerView.prototype.bindEvents = function () {
     this.foodSearch = searchElement.value;
     PubSub.publish('BeerView:paired food search entered', this.foodSearch);
   });
+
+this.selectBeer = document.querySelector("#beer-select");
+  this.selectBeer.addEventListener('change', (evt) => {
+    const beerIndex = evt.target.value;
+    PubSub.publish('BeerView:change', beerIndex);
+  })
+
+
+
+
+
+  // this.container.addEventListener("click", (event) => {
+  //   console.log(event.target.innerHTML);
+  //     console.log(event.target);
+  //
+  //   console.log(event)
+  //
+  // });
+
+
+// let divs = document.getElementsByClassName('info-button');
+// Object.entries(divs).map((object) => { console.log(object) });
+// console.log(divs);
+// divs[0].addEventListener("click", function() {
+//     console.log("Hello " + this + " (" + this.innerHTML + ") from event listener [0]");
+//     /* Here, "this" refers to 1st div */
+// });
+
+
+  // const infoElements = document.getElementsByClassName("info-button");
+  // console.log(infoElements);
+  // for(let i=0;i<infoElements.length;i++){
+  //   infoElements[i].addEventListener('click', (evt) => {
+  //     // need index info so that I can get beer data to display
+  //     const beerIndex = evt.value;
+  //     PubSub.publish('BeerView:information pop up requested', beerIndex);
+  //   });
+  // }
+
 }; // bindEvents
+
+BeerView.prototype.populateSelect = function(beersArr) {
+
+  this.selectBeer = document.querySelector("#beer-select");
+
+  beersArr.forEach((beer, index) => {
+
+
+    const option = this.createBeerOption(beer, index);
+    console.log(option)
+    this.selectBeer.appendChild(option);
+  });
+  return this.selectBeer;
+
+}
+
+BeerView.prototype.createBeerOption = function (beer, index) {
+  const option = document.createElement('option');
+  option.textContent = beer.name;
+  option.value = index;
+
+  return option;
+};
+
 
 BeerView.prototype.displayBeers = function(beersArr){
   this.clearTheScreen();
   let searchBoxText = ""
   searchBoxText = this.createFeedbackString(beersArr);
-  console.log(searchBoxText);
   if (searchBoxText != ""){
     this.container.appendChild(searchBoxText);
   }
 
+  beersArr.forEach((beer) => {
+    const beerBox = this.createBeerBox();
 
-beersArr.forEach((beer) => {
-  const beerBox = this.createBeerBox();
+    const info = this.createInfoButton();
+    beerBox.appendChild(info);
 
-  const name = this.createNameItem(beer.name);
-  beerBox.appendChild(name);
+    const name = this.createNameItem(beer.name);
+    beerBox.appendChild(name);
 
-  const image = this.createImageItem(beer.image_url)
-  beerBox.appendChild(image);
+    const image = this.createImageItem(beer.image_url)
+    beerBox.appendChild(image);
 
-  this.container.appendChild(beerBox);
-});
+    this.container.appendChild(beerBox);
+  });
 }
 
 BeerView.prototype.clearTheScreen = function(){
@@ -54,7 +127,7 @@ BeerView.prototype.clearTheScreen = function(){
 
 BeerView.prototype.createFeedbackString = function(beersArr){
   let searchBoxText = "";
-  
+
   if (beersArr.length === 0){
     searchBoxText = document.createElement('p');
     searchBoxText.classList.add('search-feedback');
@@ -76,6 +149,19 @@ BeerView.prototype.createBeerBox = function() {
   const beerBox = document.createElement('div');
   beerBox.classList.add('beer-item')
   return beerBox;
+}
+
+BeerView.prototype.createInfoButton = function(){
+  const infoClick = document.createElement('a');
+
+  const info = document.createElement('button');
+  info.classList.add('info-button');
+  infoClick.appendChild(info);
+
+
+  return infoClick;
+
+
 }
 
 BeerView.prototype.createNameItem = function(beerName){
