@@ -27,39 +27,49 @@ BeerView.prototype.bindEvents = function () {
 
 BeerView.prototype.displayBeers = function(beersArr){
   this.clearTheScreen();
-
-    if (beersArr.length === 0){
-      const searchBoxText = document.createElement('p');
-      searchBoxText.classList.add('search-feedback');
-
-      const foodSearchFormatted = this.capitalize(this.foodSearch);
-      searchBoxText.textContent = `Sorry there are no pairings for ${this.foodSearch}`;
-      this.container.appendChild(searchBoxText);
-    }else if(this.foodSearch != ""){
-      const searchBoxText = document.createElement('p');
-      searchBoxText.classList.add('search-feedback');
-      const foodSearchFormatted = this.capitalize(this.foodSearch);
-      searchBoxText.textContent = `Beer Pairings for ${foodSearchFormatted}`;
-      this.container.appendChild(searchBoxText);
-  
+  let searchBoxText = ""
+  searchBoxText = this.createFeedbackString(beersArr);
+  console.log(searchBoxText);
+  if (searchBoxText != ""){
+    this.container.appendChild(searchBoxText);
   }
 
 
-  beersArr.forEach((beer) => {
-    const beerBox = this.createBeerBox();
+beersArr.forEach((beer) => {
+  const beerBox = this.createBeerBox();
 
-    const name = this.createNameItem(beer.name);
-    beerBox.appendChild(name);
+  const name = this.createNameItem(beer.name);
+  beerBox.appendChild(name);
 
-    const image = this.createImageItem(beer.image_url)
-    beerBox.appendChild(image);
+  const image = this.createImageItem(beer.image_url)
+  beerBox.appendChild(image);
 
-    this.container.appendChild(beerBox);
-  });
+  this.container.appendChild(beerBox);
+});
 }
 
 BeerView.prototype.clearTheScreen = function(){
   this.container.innerHTML = '';
+}
+
+BeerView.prototype.createFeedbackString = function(beersArr){
+  let searchBoxText = "";
+  
+  if (beersArr.length === 0){
+    searchBoxText = document.createElement('p');
+    searchBoxText.classList.add('search-feedback');
+
+    const foodSearchFormatted = this.capitalize(this.foodSearch);
+    searchBoxText.textContent = `Sorry there are no pairings for ${this.foodSearch}`;
+
+  }else if(this.foodSearch != ""){
+    searchBoxText = document.createElement('p');
+    searchBoxText.classList.add('search-feedback');
+    const foodSearchFormatted = this.capitalize(this.foodSearch);
+    searchBoxText.textContent = `Beer Pairings for ${foodSearchFormatted}`;
+  }
+
+  return searchBoxText;
 }
 
 BeerView.prototype.createBeerBox = function() {

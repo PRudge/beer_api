@@ -16,6 +16,10 @@ BeerData.prototype.bindEvents = function() {
 
     this.getPairedBeers(foodToSearch);
   })
+
+  // PubSub.subscribe('PopUpView:information pop up requested', (evt)  => {
+  //   console.log(evt.detail);
+  // })
 };
 
 

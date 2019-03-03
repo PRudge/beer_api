@@ -1,113 +1,110 @@
-body{
-  font-family: 'Julius Sans One', sans-serif;
-  background-color: #fafafa;
-  color: #181818;
+body {
+    font-family: 'Julius Sans One', sans-serif;
+    background-color: #fafafa;
+    color: #181818;
 }
 
-.header-title{
-  font-weight: normal;
-  text-align: center;
-  padding: 5px;
-  margin: 0;
-  color: #751636;
-  border-bottom: 1px solid #bfbfbf;
+.header-title {
+    font-weight: normal;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    color: #751636;
+    border-bottom: 1px solid #bfbfbf;
 }
 
-#search-wrapper{
- display: grid;
- grid-template-columns: repeat(1fr, 10fr);
- width: 300px;
+#search-wrapper { /* wrapper for the search item */
+    display: grid;
+    grid-template-columns: repeat(1fr, 10fr);
+    width: 300px;
 }
 
-#search-field{
-  font-size: 15px;
+.icon { /* magnifying glass grid area */
+    grid-area: 1 / 1 / 2 / 2;
+    color: #751636;
+    padding: 7px;
+    margin: 5px auto;
+    margin-top: 1rem;
+    margin-right: 0px;
+    border: 1px solid #bfbfbf;
+    border-right: 0px;
+    background-color: lightgray;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
-.search-container{
-  grid-area: 1 / 2 / 2 / 8
+#search-field { /* id for search box 'onclick' */
+    font-size: 15px;
 }
 
-.icon{
-  grid-area: 1 / 1 / 2 / 2;
-  color: #751636;
-  padding: 7px;
-
-  margin: 5px auto;
-  margin-top: 1rem;
-  margin-right: 0px;
-  border:1px solid #bfbfbf;
-  border-right: 0px;
-  background-color: lightgray;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
+.search-container { /* search box grid area */
+    grid-area: 1 / 2 / 2 / 8
 }
 
 /* search box styling */
- input[type=search]{
-  border:1px solid #bfbfbf;
-  padding: 7px;
-  margin-top: 1rem;
-  outline: none;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+input[type=search] {
+    border: 1px solid #bfbfbf;
+    padding: 7px;
+    margin-top: 1rem;
+    outline: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
-input[type=search]:hover{
-  background: #e6e6e6;
-  box-shadow:none;
-  margin-top: 1rem;
+input[type=search]:hover {
+    background: #e6e6e6;
+    box-shadow: none;
+    margin-top: 1rem;
 }
 
-.search-feedback{
-  font-family: 'Avenir Next', Verdana, Helvetica, sans-serif;
-  grid-area: 1 / 1 / 2 / 6;
-  text-align: left;
-  font-size: 26px;
-  font-weight: lighter;
-  color: #8c8d8e;
-  radius: 7px;
+.search-feedback {
+    font-family: 'Avenir Next', Verdana, Helvetica, sans-serif;
+    grid-area: 1 / 1 / 2 / 6;
+    text-align: left;
+    font-size: 26px;
+    font-weight: lighter;
+    color: #8c8d8e;
 }
 
-
-#beer-container{
- display: grid;
- grid-template-columns: repeat(5, 1fr);
+#beer-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
-.beer-item{
- grid-column: auto;
- border-radius: 8px;
- background-color: white;
- box-shadow: 2px 2px 6px 0 rgba(123, 123, 123, 0.2);
- margin:  10px;
- padding: 0;
- height: auto; /* makes sure all the image is displayed */
+.beer-item {
+    grid-column: auto;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 2px 2px 6px 0 rgba(123, 123, 123, 0.2);
+    margin: 10px;
+    padding: 0;
+    height: auto; /* makes sure all the image is displayed */
 }
 
-.beer-item:hover{
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+.beer-item:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
 }
 
-.beer-title{
-  color: #751636;
-  border-bottom: 1px solid #bfbfbf;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  text-align: center;
-  padding: 5px;
-  margin: 0;
-  font-size: 20px;
-  background-color: #e6e6e6;
-  height: 50px;
+.beer-title {
+    color: #751636;
+    border-bottom: 1px solid #bfbfbf;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    font-size: 20px;
+    background-color: #e6e6e6;
+    height: 50px;
 }
 
-.beer-title:hover{
-  /* background-color: #000;
+.beer-title:hover {
+/* background-color: #000;
   color: #fff; */
 }
 
-.image-style{
-  margin: 20px auto; /* puts image in middle horizontally */
-  display: block;
-  max-height: 100px; */
+.image-style {
+    margin: 20px auto; /* puts image in middle horizontally */
+    display: block;
+    max-height: 100px;
 }
