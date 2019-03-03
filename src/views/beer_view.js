@@ -3,6 +3,7 @@ const PubSub = require('../helpers/pub_sub');
 
 const BeerView = function(container) {
   this.container = container;
+  this.foodSearch = "";
 };
 
 BeerView.prototype.bindEvents = function () {
@@ -19,13 +20,30 @@ BeerView.prototype.bindEvents = function () {
 
   const searchElement = document.getElementById("search-field");
   searchElement.addEventListener("search", (event) => {
-    const foodSearch = searchElement.value;
-    PubSub.publish('BeerView:paired food search entered', foodSearch);
+    this.foodSearch = searchElement.value;
+    PubSub.publish('BeerView:paired food search entered', this.foodSearch);
   });
 }; // bindEvents
 
 BeerView.prototype.displayBeers = function(beersArr){
   this.clearTheScreen();
+
+    if (beersArr.length === 0){
+      const searchBoxText = document.createElement('p');
+      searchBoxText.classList.add('search-feedback');
+
+      const foodSearchFormatted = this.capitalize(this.foodSearch);
+      searchBoxText.textContent = `Sorry there are no pairings for ${this.foodSearch}`;
+      this.container.appendChild(searchBoxText);
+    }else if(this.foodSearch != ""){
+      const searchBoxText = document.createElement('p');
+      searchBoxText.classList.add('search-feedback');
+      const foodSearchFormatted = this.capitalize(this.foodSearch);
+      searchBoxText.textContent = `Beer Pairings for ${foodSearchFormatted}`;
+      this.container.appendChild(searchBoxText);
+  
+  }
+
 
   beersArr.forEach((beer) => {
     const beerBox = this.createBeerBox();
@@ -62,6 +80,11 @@ BeerView.prototype.createImageItem = function(imageBeerBottle){
   image.classList.add('image-style');
   image.src = imageBeerBottle;
   return image;
+}
+
+BeerView.prototype.capitalize = function(word) {
+    word.toLowerCase();
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 

@@ -26,7 +26,6 @@ BeerData.prototype.getData = function () {
 
     PubSub.publish('BeerData:beer data loaded', this.data);
   });
-
 };
 
 
@@ -34,7 +33,7 @@ BeerData.prototype.getPairedBeers = function (foodToSearch) {
   this.pairedBeers = []; // clear this down so that it is ready for next search
   this.data.forEach(beerDets =>{
     beerDets.food_pairing.forEach(beerFoodPair => {
-      if (beerFoodPair.match(foodToSearch)) {
+      if (beerFoodPair.toLowerCase().match(foodToSearch.toLowerCase())) {
         this.pairedBeers.push(beerDets)
       }
     });
