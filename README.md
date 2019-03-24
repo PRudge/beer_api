@@ -42,6 +42,8 @@ npm run build
 
 In atom, right click on index.html and choose 'open in browser', the website will now be visible.
 
+#### Screenshot of Beer API website
+
 ![](images/beer_api.jpg)
 
 
