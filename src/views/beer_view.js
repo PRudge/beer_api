@@ -15,17 +15,12 @@ BeerView.prototype.bindEvents = function () {
     this.populateSelect(beers);
   });
 
-  PubSub.subscribe('BeerData:beers ready' , (evt) => {
-    const beers = evt.detail;
-    console.log(beers);
-    this.populateSelect(beers);
-  }); // subscribe
+  // PubSub.subscribe('BeerData:beers ready' , (evt) => {
+  //   const beers = evt.detail;
+  //   console.log(beers);
+  //   this.populateSelect(beers);
+  // }); // subscribe
 
-  // const searchElement = document.querySelector("search-field");
-  // searchElement.addEventListener('search', (evt) => {
-  //     const foodSearch = evt.value;
-  //     PubSub.publish('BeerView:paired food search entered', foodSearch);
-  //   });
 
   const searchElement = document.getElementById("search-field");
   searchElement.addEventListener("search", (event) => {
@@ -33,23 +28,6 @@ BeerView.prototype.bindEvents = function () {
     PubSub.publish('BeerView:paired food search entered', this.foodSearch);
   });
 
-this.selectBeer = document.querySelector("#beer-select");
-  this.selectBeer.addEventListener('change', (evt) => {
-    const beerIndex = evt.target.value;
-    PubSub.publish('BeerView:change', beerIndex);
-  })
-
-
-
-
-
-  // this.container.addEventListener("click", (event) => {
-  //   console.log(event.target.innerHTML);
-  //     console.log(event.target);
-  //
-  //   console.log(event)
-  //
-  // });
 
 
 // let divs = document.getElementsByClassName('info-button');
@@ -61,25 +39,22 @@ this.selectBeer = document.querySelector("#beer-select");
 // });
 
 
-  // const infoElements = document.getElementsByClassName("info-button");
-  // console.log(infoElements);
-  // for(let i=0;i<infoElements.length;i++){
-  //   infoElements[i].addEventListener('click', (evt) => {
-  //     // need index info so that I can get beer data to display
-  //     const beerIndex = evt.value;
-  //     PubSub.publish('BeerView:information pop up requested', beerIndex);
-  //   });
-  // }
+  this.selectBeer = document.querySelector("#beer-select");
+  this.selectBeer.addEventListener('change', (evt) => {
+    const beerIndex = evt.target.value;
+    PubSub.publish('BeerView:change', beerIndex);
+  })
+
+
 
 }; // bindEvents
 
 BeerView.prototype.populateSelect = function(beersArr) {
 
+
   this.selectBeer = document.querySelector("#beer-select");
 
   beersArr.forEach((beer, index) => {
-
-
     const option = this.createBeerOption(beer, index);
     console.log(option)
     this.selectBeer.appendChild(option);
@@ -95,7 +70,6 @@ BeerView.prototype.createBeerOption = function (beer, index) {
 
   return option;
 };
-
 
 BeerView.prototype.displayBeers = function(beersArr){
   this.clearTheScreen();
@@ -158,10 +132,7 @@ BeerView.prototype.createInfoButton = function(){
   info.classList.add('info-button');
   infoClick.appendChild(info);
 
-
   return infoClick;
-
-
 }
 
 BeerView.prototype.createNameItem = function(beerName){

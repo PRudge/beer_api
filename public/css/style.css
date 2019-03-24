@@ -17,6 +17,7 @@ body {
     display: grid;
     grid-template-columns: repeat(1fr, 10fr);
     width: 300px;
+    padding:10px;
 }
 
 .icon { /* magnifying glass grid area */
@@ -69,6 +70,7 @@ input[type=search]:hover {
 #beer-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    padding:20px;
 }
 
 .beer-item {
