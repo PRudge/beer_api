@@ -8,22 +8,43 @@
 
 ## Brief
 
-Your task is to create an application that makes a request to an API and displays the data.
+Create an application that makes a request to an API and displays the data.
 
-Suggested APIs:
+Chosen API: Brewdog Beer: `https://punkapi.com/`
 
-1. REST Countries: https://restcountries.eu/
-2. Studio Ghibli: https://ghibliapi.herokuapp.com/
-3. Brewdog Beer: https://punkapi.com/
+- The application displays all the Brewdog Beers and allows the user to choose a food pairing to view only the beers that go well with the inputted food item.
 
-These APIs all allow browser requests without authentification or keys. If you choose to use a different API, make sure you are able to load the data into your application without issues, so that you can spend the time focussing on building your application. We suggest you do not use an API that requires authentification (OAuth), though using an API which requires a key is fine, as long as you are able to get a key quickly and easily.
+## Getting Started
 
-### MVP
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-- The application should display data from an API request.
-- The application should have a clear separation of concerns using a model and views.
+### Installing
 
-### Extensions
+Install dependencies:
 
-- Take input from the user to update the page. You could update the page by filtering or manipulating the data on user interaction, or you might make further API requests to load more data that is then displayed.
+```
+npm install
+```
+
+Run webpack:
+
+```
+npm i -D webpack webpack-cli
+```
+Now run npm run build - this will build the bundle.js file as specified in webconfig.js
+
+
+```
+npm run build
+```
+
+### Using
+
+In atom, right click on index.html and choose 'open in browser', the website will now be visible.
+
+![](images/beer_api.jpg)
+
+
+
+
 
