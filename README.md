@@ -1,4 +1,4 @@
-# Weekend Homework: Pub/Sub Application with Requests
+# BEER API Homework
 
 ### Learning Objectives
 
