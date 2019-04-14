@@ -9,22 +9,16 @@ const PopUpView = function(popUpWindow) {
 };
 
 PopUpView.prototype.bindEvents = function () {
-  PubSub.subscribe('BeerView:Beer-Clicked',(evt) => {
 
-    console.log(`we hear you ${evt.detail}`);
+  PubSub.subscribe('BeerData:selected-beer-ready',(evt) => {
+
+    console.log(`we hear you ${evt.detail.name}`);
 
   this.popUpWindow.classList.remove('hidden');
   this.popUpWindow.classList.add('view'); // 16
-  // addForm(); // 17
-    // window.open('','popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
 
-
-
-  });
-
-
-
-}; // bindEvents
+});
+} // bindEvents
 
 
 

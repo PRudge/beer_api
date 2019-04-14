@@ -8,45 +8,32 @@ const BeerData = function (){
 
 BeerData.prototype.bindEvents = function() {
   PubSub.subscribe('BeerView:paired food search entered', (evt)  => {
-
     const foodToSearch = evt.detail;
     if (foodToSearch === ""){ // no input so display all the beers
       PubSub.publish('BeerData:beer data loaded', this.data);
     }
-
     this.getPairedBeers(foodToSearch);
   });
 
   PubSub.subscribe('BeerView:change', (evt)  => {
-
     const beerIndex = evt.detail;
     this.publishBeersByOneBeer(beerIndex);
   });
 
-  // PubSub.subscribe('BeerView:Beer-Clicked',(evt) => {
-  //
-  //   console.log("we hear you");
-  //
-  //
-  // });
+  PubSub.subscribe('RenderView:Beer-Clicked',(evt) => {
+    const beerIndex = evt.detail;
+    this.publishBeerDetail(beerIndex);
+  });
+}
+
+BeerData.prototype.publishBeerDetail = function (beerIndex) {
+  const selectedBeer = this.data[beerIndex-1];
+  PubSub.publish('BeerData:selected-beer-ready', selectedBeer);
 };
-
-  // PubSub.subscribe('BeerView:information pop up requested', (evt)  => {
-  //   console.log(`hello`, evt.detail);
-  // })
-
-
 
 BeerData.prototype.publishBeersByOneBeer = function (){
   console.log('I am here')
 }
-
-// BeerData.prototype.publishBeers = function(beers){
-//   this.beersArr = data;
-//   this.beers = this.getUniqueBeerDets();
-//
-//   PubSub.publish('BeerData:beers ready', this.beers);
-// }
 
 BeerData.prototype.getData = function () {
   const request = new RequestHelper ('https://api.punkapi.com/v2/beers');
