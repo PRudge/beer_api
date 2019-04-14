@@ -44,11 +44,9 @@ RenderView.prototype.createBeerBox = function() {
 
 RenderView.prototype.createInfoButton = function(){
   const infoClick = document.createElement('a');
-
   const info = document.createElement('button');
   info.classList.add('info-button');
   infoClick.appendChild(info);
-
   return infoClick;
 }
 
@@ -76,17 +74,14 @@ RenderView.prototype.createFeedbackString = function(beersArr, foodSearch){
   if (beersArr.length === 0){
     searchBoxText = document.createElement('p');
     searchBoxText.classList.add('search-feedback');
-
     const foodSearchFormatted = this.capitalize(foodSearch);
     searchBoxText.textContent = `Sorry there are no pairings for ${foodSearch}`;
-
   }else if(foodSearch != ""){
     searchBoxText = document.createElement('p');
     searchBoxText.classList.add('search-feedback');
     const foodSearchFormatted = this.capitalize(foodSearch);
     searchBoxText.textContent = `Beer Pairings for ${foodSearchFormatted}`;
   }
-
   return searchBoxText;
 }
 
@@ -94,7 +89,5 @@ RenderView.prototype.capitalize = function(word) {
   word.toLowerCase();
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
-
 
 module.exports = RenderView;
