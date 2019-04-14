@@ -10,7 +10,7 @@ const BeerView = function(container) {
 BeerView.prototype.bindEvents = function () {
   PubSub.subscribe('BeerData:beer data loaded', (evt) => {
     const beers = evt.detail;
-    console.log(beers);
+  
     this.displayBeers(beers);
     this.populateSelect(beers);
   });
@@ -84,6 +84,7 @@ BeerView.prototype.displayBeers = function(beersArr){
 
     const info = this.createInfoButton();
     beerBox.appendChild(info);
+    this.boxSelect(info, beer.id);
 
     const name = this.createNameItem(beer.name);
     beerBox.appendChild(name);
@@ -92,8 +93,16 @@ BeerView.prototype.displayBeers = function(beersArr){
     beerBox.appendChild(image);
 
     this.container.appendChild(beerBox);
+    // this.boxSelect(this.container);
   });
 }
+
+BeerView.prototype.boxSelect = function (beerBox, beerName) {
+  beerBox.addEventListener('click', (evt) => {
+    PubSub.publish("BeerView:Beer-Clicked", beerName)
+  });
+};
+
 
 BeerView.prototype.clearTheScreen = function(){
   this.container.innerHTML = '';

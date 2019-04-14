@@ -1,6 +1,7 @@
 const PubSub = require('./helpers/pub_sub.js');
 const BeerData = require('./models/beer_data.js');
 const BeerView = require('./views/beer_view.js');
+const PopUpView = require('./views/pop_up_view.js');
 // const PopUpView = require('./views/pop_up_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   beerData.getData();
   beerData.bindEvents();
 
-  // const popUpWindow = document.querySelector("#pop-up-window");
-  // const popUpView = new PopUpView(popUpWindow);
-  // popUpView.bindEvents();
+  const popUpWindow = document.querySelector("#modal-content");
+  const popUpView = new PopUpView(popUpWindow);
+  popUpView.bindEvents();
 
 
 }); // #dom contentloaded

@@ -18,10 +18,17 @@ BeerData.prototype.bindEvents = function() {
   });
 
   PubSub.subscribe('BeerView:change', (evt)  => {
-    console.log('here I am');
+
     const beerIndex = evt.detail;
     this.publishBeersByOneBeer(beerIndex);
-  })
+  });
+
+  // PubSub.subscribe('BeerView:Beer-Clicked',(evt) => {
+  //
+  //   console.log("we hear you");
+  //
+  //
+  // });
 };
 
   // PubSub.subscribe('BeerView:information pop up requested', (evt)  => {
@@ -49,7 +56,6 @@ BeerData.prototype.getData = function () {
     PubSub.publish('BeerData:beer data loaded', this.data);
   });
 };
-
 
 BeerData.prototype.getPairedBeers = function (foodToSearch) {
   this.pairedBeers = []; // clear this down so that it is ready for next search
