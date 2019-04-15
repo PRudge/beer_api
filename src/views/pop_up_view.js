@@ -15,6 +15,18 @@ PopUpView.prototype.bindEvents = function () {
     this.displayPopUp(beerPopUp);
 
   });
+
+  // // Detect all clicks on the document
+  //   let box = document.querySelector("#modal-content");
+  // document.addEventListener("click", function(event) {
+  //   // If user clicks inside the element, do nothing
+  //   if (event.target.closest("#modal-content")) return;
+  //
+  //   // If user clicks outside the element, hide it!
+  //   box.classList.add('hidden');
+  //   box.classList.remove('view');
+  // });
+
 } // bindEvents
 
 PopUpView.prototype.displayPopUp = function (beer) {
@@ -33,11 +45,10 @@ PopUpView.prototype.displayPopUp = function (beer) {
 
   const closeButton = document.createElement('button');
   closeButton.classList.add('close-btn');
-
   popUpBox.appendChild(closeButton);
 
   closeButton.addEventListener('click', (evt) => {
-    PubSub.publish('PopUpView:close-click', evt.target.value);
+     this.clearTheScreen();
   });
 
   const tagLine = document.createElement('p');

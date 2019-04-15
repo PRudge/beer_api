@@ -24,6 +24,8 @@ BeerData.prototype.bindEvents = function() {
     const beerIndex = evt.detail;
     this.publishBeerDetail(beerIndex);
   });
+
+  
 }
 
 BeerData.prototype.publishBeerDetail = function (beerIndex) {

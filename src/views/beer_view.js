@@ -12,7 +12,7 @@ const BeerView = function(container) {
 BeerView.prototype.bindEvents = function () {
   PubSub.subscribe('BeerData:beer data loaded', (evt) => {
     const beers = evt.detail;
-    console.log(beers);
+    console.log(beers)
     this.renderBeersView(beers);
     this.populateSelect(beers);
   });
